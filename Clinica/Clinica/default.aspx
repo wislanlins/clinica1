@@ -10,7 +10,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="was-validated">
         <div class="container">
             <h4 class="mb-3">Ficha de Cadastro</h4>
             <div class="card">
@@ -63,11 +63,11 @@
                             </div>
                             <div class="d-block my-3 col-4">
                                 <div class="custom-control custom-radio">
-                                    <input id="m" name="sexo" type="radio" value="m" class="custom-control-input" checked="" required="" />
+                                    <input id="m" name="sexo" type="radio" value="m" class="custom-control-input" checked="" required />
                                     <label class="custom-control-label" for="m">Masculino</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" name="sexo" value="f" id="f" class="custom-control-input" required="" />
+                                    <input type="radio" name="sexo" value="f" id="f" class="custom-control-input" required />
                                     <label class="custom-control-label" for="f">Feminino</label>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                 <label for="profissao">Profissão:</label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" name="profissao" required /><br />
+                                <input type="text" class="form-control" name="profissao" required />
                             </div>
                         </div>
                     </div>
@@ -268,6 +268,9 @@
                             </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" name="alergia" />
+                                <small id="textoAjuda" class="form-text text-muted">
+  Descreva suas alergias, caso possua.
+</small>
                             </div>
                         </div>
                     </div>
