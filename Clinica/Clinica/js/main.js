@@ -38,6 +38,30 @@ function preencherFormulario(dados) {
     }
 }
 
+function coletarDoFormularios() {
+    var dados = {};
+    var limite = propriedadesPessoais.length;
+
+    for (var i = 0; i < limite; i++) {
+        var prop = propriedadesPessoais[i];
+        if ((prop === "rh") || (prop === "abo") || (prop === "sexo")) {
+            dados[prop] = $("input:radio[value=" + dados[prop] + "]").prop('checked');
+            $("input:radio[value=" + dados[prop] + "]").prop('checked', true);
+        } else {
+            var input = $("input[name=" + prop + "]").val();
+            if (input !== undefined) {
+                dados[prop] = input;
+            }
+            var select = $("select[name=" + prop + "]").val();
+            if (select !== undefined) {
+                dados[prop] = select;
+            }
+        }
+    }
+
+    return dados;
+}
+
 $(document).ready(function () {
     $("#form-submit").click(function () {        
         inputCpf = $("input[name=cpf]");
@@ -58,10 +82,12 @@ $(document).ready(function () {
             return;
         }
 
-        // TODO Adicionar dados no servidor
+        // TODO Adicionar dados ao servidor
+        var dados = coletarDoFormularios();
         alert("Operação concluída!");
         window.location.reload();
     });
+
     $("#cpfSearch").click(function () {
         var acao = "Cadastrar";
         var inputCpf = $("input[name=cpf]");

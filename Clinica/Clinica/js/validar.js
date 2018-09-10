@@ -52,7 +52,7 @@ function validarAltura(entrada) {
 
 function verificarDataExiste(dia, mes, ano) {
     var bissexto = 0;
-    if ((ano > 1900) || (ano < 2100)) {
+    if ((ano > 1900) && (ano < 2100)) {
         switch (mes) {
             case 1:
             case 3:
@@ -92,13 +92,15 @@ function verificarDataExiste(dia, mes, ano) {
 
 function validarDataDeNascimento(entrada) {
     var data = entrada.split('/');
-    data = new Date(parseInt(data[2]), parseInt(data[1]) - 1, parseInt(data[0]));
+    var dia = parseInt(data[0]);
+    var mes = parseInt(data[1]);
+    var ano = parseInt(data[2]);
+
      // Verifica se a data foi digitada corretamente
-    if (!verificarDataExiste(data.getDate(), data.getMonth() + 1, data.getYear())) {
+    if (!verificarDataExiste(dia, mes, ano)) {
         return false;
     }
 
     // Verifica se a data não é maior do que a do dia de hoje
-    var today = Date.now();
-    return today > data;
+    return Date.now() > new Date(ano, mes - 1, dia);
 }
