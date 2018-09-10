@@ -61,12 +61,19 @@
                             <div class="col-4">
                                 <label for="sexo">Sexo:</label>
                             </div>
-                            <div class="col-8">
-                                <input type="radio" name="sexo" value="m" required />Masculino
-            <input type="radio" name="sexo" value="f" />Feminino<br />
+                            <div class="d-block my-3 col-4">
+                                <div class="custom-control custom-radio">
+                                    <input id="m" name="sexo" type="radio" value="m" class="custom-control-input" checked="" required="" />
+                                    <label class="custom-control-label" for="m">Masculino</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" name="sexo" value="f" id="f" class="custom-control-input" required="" />
+                                    <label class="custom-control-label" for="f">Feminino</label>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <div class="row">
                             <div class="col-4">
@@ -280,30 +287,70 @@
                             <div class="col-4">
                                 <label for="tipoSanguineo">Tipo Sanguíneo:</label>
                             </div>
-                            <div class="col-4">
-                                <input type="radio" value="a" name="abo" />A
-                                <input type="radio" value="b" name="abo" />B
-                                <input type="radio" value="ab" name="abo" />AB
-                                <input type="radio" value="o" name="abo" />O
-                            </div>
-                            <div class="col-4">
-                                <label for="fatorRh">RH:</label>
-                                <input type="radio" value="positivo" name="rh" />+
-                                <input type="radio" value="negativo" name="rh" />-
+                            <div class="d-block my-3 col-4">
+                                <!-- <div class="col-4"> -->
+                                <div class="custom-control custom-radio">
+                                    <input id="a" name="abo" type="radio" value="a" class="custom-control-input" checked="" required="" />
+                                    <label class="custom-control-label" for="a">A</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="b" name="abo" type="radio" value="b" class="custom-control-input" required="" />
+                                    <label class="custom-control-label" for="b">B</label>
+                                </div>
+
+                           
+                                <div class="custom-control custom-radio">
+                                    <input id="ab" name="abo" type="radio" value="ab" class="custom-control-input" required="" />
+                                    <label class="custom-control-label" for="ab">AB</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="o" name="abo" type="radio" value="o" class="custom-control-input" required="" />
+                                    <label class="custom-control-label" for="o">O</label>
+                                </div>
+
+                                <!--  </div> -->
+                               
                             </div>
                         </div>
                     </div>
+
+                    
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="tipoSanguineo">Fator Rh:</label>
+                            </div>
+                            <div class="d-block my-3 col-4">
+                                        <div class="custom-control custom-radio">
+                                        <input id="positivo" name="rh" type="radio" value="positivo" class="custom-control-input" checked="" required="" />
+                                        <label class="custom-control-label" for="positivo">+</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="negativo" name="rh" type="radio" value="negativo" class="custom-control-input" required="" />
+                                        <label class="custom-control-label" for="negativo">-</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                       
                 </div>
+        </div>
+
+
+
+
+        </div>
             </div>
-            <a name="enviar" class="btn btn-primary btn-lg btn-block" value="Cadastrar" id="form-submit">Cadastrar</a>
+            <button name="enviar" class="btn btn-primary btn-lg btn-block" value="Cadastrar" id="form-submit">Cadastrar</button>
         </div>
     </form>
 
     <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/popper.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/validar.js" type="text/javascript"></script>
-    <script src="js/buscarCPF.js" type="text/javascript"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/validar.js"></script>
+    <script src="js/buscarCPF.js"></script>
     <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>
