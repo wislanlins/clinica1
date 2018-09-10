@@ -1,0 +1,6 @@
+c:\users\wislan.lins\documents\visual studio 2013\Projects\Clinica\Clinica\bin\Clinica.dll.config
+c:\users\wislan.lins\documents\visual studio 2013\Projects\Clinica\Clinica\bin\Clinica.dll
+c:\users\wislan.lins\documents\visual studio 2013\Projects\Clinica\Clinica\bin\Clinica.pdb
+c:\users\wislan.lins\documents\visual studio 2013\Projects\Clinica\Clinica\obj\Debug\Clinica.csprojResolveAssemblyReference.cache
+c:\users\wislan.lins\documents\visual studio 2013\Projects\Clinica\Clinica\obj\Debug\Clinica.dll
+c:\users\wislan.lins\documents\visual studio 2013\Projects\Clinica\Clinica\obj\Debug\Clinica.pdb
