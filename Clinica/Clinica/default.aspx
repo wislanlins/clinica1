@@ -295,15 +295,15 @@
                     </div>
                 </div>
             </div>
-            <button name="enviar" class="btn btn-primary btn-lg btn-block" value="Cadastrar" id="form-submit">Cadastrar</button>
+            <a name="enviar" class="btn btn-primary btn-lg btn-block" value="Cadastrar" id="form-submit">Cadastrar</a>
         </div>
     </form>
 
     <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/validar.js"></script>
-    <script src="js/buscarCPF.js"></script>
+    <script src="js/popper.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/validar.js" type="text/javascript"></script>
+    <script src="js/buscarCPF.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>

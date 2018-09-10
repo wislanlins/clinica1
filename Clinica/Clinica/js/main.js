@@ -58,7 +58,9 @@ $(document).ready(function () {
             return;
         }
 
+        // TODO Adicionar dados no servidor
         alert("Operação concluída!");
+        window.location.reload();
     });
     $("#cpfSearch").click(function () {
         var acao = "Cadastrar";
