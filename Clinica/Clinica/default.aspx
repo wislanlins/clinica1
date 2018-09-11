@@ -23,9 +23,10 @@
                             </div>
 
                             <div class="col-4">
-                                <input type="tel" class="form-control" id="cpf" name="cpf"
+                              <!--  <input type="tel" class="form-control" id="cpf" name="cpf"
                                     placeholder="000.000.000-00"
-                                    pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" required />
+                                    pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" required /> -->
+                            <input type="text" name="cpf" placeholder="000.000.000-00" class="form-control" id="cpf" onkeydown="javascript: fMasc( this, mCPF );"/>
                             </div>
                             <div class="col-4">
                                 <a href="#" name="procurar" class="btn btn-primary btn-block" value="Cadastrar" id="cpfSearch">Procurar</a>
@@ -62,11 +63,11 @@
                                 <label for="sexo">Sexo:</label>
                             </div>
                             <div class="d-block my-3 col-4">
-                                <div class="custom-control custom-radio">
-                                    <input id="m" name="sexo" type="radio" value="m" class="custom-control-input" checked="" required />
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="m" name="sexo" type="radio" value="m" class="custom-control-input" required />
                                     <label class="custom-control-label" for="m">Masculino</label>
                                 </div>
-                                <div class="custom-control custom-radio">
+                                <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" name="sexo" value="f" id="f" class="custom-control-input" required />
                                     <label class="custom-control-label" for="f">Feminino</label>
                                 </div>
@@ -105,17 +106,19 @@
                                 <label for="telCelular">Celular:</label>
                             </div>
                             <div class="col">
-                                <input type="tel" class="form-control" id="telFixo" name="fixo"
+                               <!-- <input type="tel" class="form-control" id="telFixo" name="fixo"
                                     placeholder="(61) 1234-4567"
                                     pattern="\([0-9]{2}\) [0-9]{4}-[0-9]{4}"
-                                    required />
+                                    required /> -->
+                                <input type="text" class="form-control" id="telFixo" placeholder="(61) 1234-4567" name="fixo" onkeydown="javascript: fMasc( this, mTel );"/>
                             </div>
                             <div class="col">
                             </div>
                             <div class="col">
-                                <input type="tel" class="form-control" id="telCelular" name="celular"
+                               <!-- <input type="tel" class="form-control" id="telCelular" name="celular"
                                     placeholder="(61) 91234-4567"
-                                    pattern="\([0-9]{2}\) 9[7-9]{1}[0-9]{3}-[0-9]{4}" />
+                                    pattern="\([0-9]{2}\) 9[7-9]{1}[0-9]{3}-[0-9]{4}" /> -->
+                                <input type="text" class="form-control" id="telCelular" placeholder="(61) 91234-4567" name="celular" onkeydown="javascript: fMasc( this, mTel );"/>
                             </div>
                             <div class="col">
                             </div>
@@ -292,22 +295,22 @@
                             </div>
                             <div class="d-block my-3 col-4">
                                 <!-- <div class="col-4"> -->
-                                <div class="custom-control custom-radio">
-                                    <input id="a" name="abo" type="radio" value="a" class="custom-control-input" checked="" required="" />
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="a" name="abo" type="radio" value="a" class="custom-control-input" required />
                                     <label class="custom-control-label" for="a">A</label>
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="b" name="abo" type="radio" value="b" class="custom-control-input" required="" />
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="b" name="abo" type="radio" value="b" class="custom-control-input" required />
                                     <label class="custom-control-label" for="b">B</label>
                                 </div>
 
                            
-                                <div class="custom-control custom-radio">
-                                    <input id="ab" name="abo" type="radio" value="ab" class="custom-control-input" required="" />
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="ab" name="abo" type="radio" value="ab" class="custom-control-input" required />
                                     <label class="custom-control-label" for="ab">AB</label>
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="o" name="abo" type="radio" value="o" class="custom-control-input" required="" />
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="o" name="abo" type="radio" value="o" class="custom-control-input" required />
                                     <label class="custom-control-label" for="o">O</label>
                                 </div>
 
@@ -324,12 +327,12 @@
                                 <label for="tipoSanguineo">Fator Rh:</label>
                             </div>
                             <div class="d-block my-3 col-4">
-                                        <div class="custom-control custom-radio">
-                                        <input id="positivo" name="rh" type="radio" value="positivo" class="custom-control-input" checked="" required="" />
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="positivo" name="rh" type="radio" value="positivo" class="custom-control-input" required />
                                         <label class="custom-control-label" for="positivo">+</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="negativo" name="rh" type="radio" value="negativo" class="custom-control-input" required="" />
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="negativo" name="rh" type="radio" value="negativo" class="custom-control-input" required />
                                         <label class="custom-control-label" for="negativo">-</label>
                                     </div>
 
