@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Clínica Médica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet">
+</head>
+<body>
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <script src="@Url.Content("~/Scripts/vendor/jquery.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/vendor/popper.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/vendor/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/vendor/jquery.mask.min.js")" type="text/javascript"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

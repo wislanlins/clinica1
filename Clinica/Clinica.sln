@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clinica", "Clinica\Clinica.csproj", "{EEC05895-C91E-4627-8B05-919C85CE833F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clinica", "Clinica\Clinica.csproj", "{39DE3066-1569-4F54-B7E7-C9A8C385E0BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clinica.Tests", "Clinica.Tests\Clinica.Tests.csproj", "{7F8C58A5-C896-4363-9D35-9AE86094D7E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EEC05895-C91E-4627-8B05-919C85CE833F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEC05895-C91E-4627-8B05-919C85CE833F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEC05895-C91E-4627-8B05-919C85CE833F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEC05895-C91E-4627-8B05-919C85CE833F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39DE3066-1569-4F54-B7E7-C9A8C385E0BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39DE3066-1569-4F54-B7E7-C9A8C385E0BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39DE3066-1569-4F54-B7E7-C9A8C385E0BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39DE3066-1569-4F54-B7E7-C9A8C385E0BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8C58A5-C896-4363-9D35-9AE86094D7E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8C58A5-C896-4363-9D35-9AE86094D7E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8C58A5-C896-4363-9D35-9AE86094D7E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8C58A5-C896-4363-9D35-9AE86094D7E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
