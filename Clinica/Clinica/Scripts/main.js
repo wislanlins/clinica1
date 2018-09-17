@@ -23,6 +23,24 @@ function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+function esvaziarFormulario() {
+    for (var i = 0; i < propriedadesPessoais.length; i++) {
+        var prop = propriedadesPessoais[i];
+        if ((prop === "rh") || (prop === "abo") || (prop === "sexo")) {
+            $("input:radio[name=" + prop + "]").prop("checked", false);
+        } else {
+            var input = $("input[name=" + prop + "]");
+            if (input !== undefined) {
+                input.val("");
+            }
+            var select = $("select[name=" + prop + "]");
+            if (select !== undefined) {
+                select.val("");
+            }
+        }
+    }
+}
+
 function preencherFormulario(dados) {
     var limite = propriedadesPessoais.length;
     for (var i = 0; i < limite; i++) {
@@ -40,52 +58,9 @@ function preencherFormulario(dados) {
             }
         }
     }
+    $("#form-submit").html("Cadastrar");
 }
 
-function fMasc(objeto, mascara) {
-    obj = objeto
-    masc = mascara
-    setTimeout("fMascEx()", 1)
-}
-function fMascEx() {
-    obj.value = masc(obj.value)
-}
-function mCPF(cpf) {
-    cpf = cpf.replace(/\D/g, "")
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-    return cpf
-}
-function mCEP(cep){
-    cep=cep.replace(/D/g,"")                
-    cep=cep.replace(/^(\d{5})(\d)/,"$1-$2") 
-        return cep
-    }
-function mTel(tel) {
-    tel = tel.replace(/\D/g, "")
-    tel = tel.replace(/^(\d)/, "($1")
-    tel = tel.replace(/(.{3})(\d)/, "$1)$2")
-    if (tel.length == 9) {
-        tel = tel.replace(/(.{1})$/, "-$1")
-    } else if (tel.length == 10) {
-        tel = tel.replace(/(.{2})$/, "-$1")
-    } else if (tel.length == 11) {
-        tel = tel.replace(/(.{3})$/, "-$1")
-    } else if (tel.length == 12) {
-        tel = tel.replace(/(.{4})$/, "-$1")
-    } else if (tel.length > 12) {
-        tel = tel.replace(/(.{4})$/, "-$1")
-    }
-    return tel;
-}
-
-function aplicarMascaras() {
-    fMasc(document.getElementsByName("cpf")[0], mCpf);
-    fMasc(document.getElementsByName("fixo")[0], mTel);
-    fMasc(document.getElementsByName("celular")[0], mTel);
-    fMasc(document.getElementsByName("cep")[0], mCEP);
-}
 
 $(document).ready(function () {
     $('.cep').mask('00000-000', { reverse: true });
@@ -112,11 +87,11 @@ $(document).ready(function () {
             return;
         }
 
-
+        // TODO Do something with data
         alert("Operação concluída!");
     });
+
     $("#cpfSearch").click(function () {
-        var acao = "Cadastrar";
         var inputCpf = $("input[name=cpf]");
         var cpf = inputCpf.val().replace(/\./g, "").replace("-", "");
         if (validarCpf(cpf)) {
@@ -125,15 +100,15 @@ $(document).ready(function () {
                 if (dados) {
                     preencherFormulario(dados);
                     aplicarMascaras();
-                     acao = "Atualizar";
+                    $("#form-submit").html("Atualizar");
                 } else {
                     alert('CPF não encontrado!');
+                    esvaziarFormulario();
                 }
-                $("#form-submit").html(acao);
             });
         } else {
             alert('CPF inválido!')
+            esvaziarFormulario();
         }
-        $("#form-submit").html(acao);
     });
 });

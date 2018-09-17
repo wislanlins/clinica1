@@ -1,6 +1,7 @@
 ﻿@section Scripts {
     <script src="@Url.Content("~/Scripts/validar.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/buscarCPF.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/mascaras.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/main.js")" type="text/javascript"></script>
 }
 <form id="form1" runat="server" class="was-validated">
@@ -21,7 +22,7 @@
                             <input type="text" name="cpf" placeholder="000.000.000-00" class="form-control cpf" id="cpf" cpf-mask="000.000.000.00" />
                         </div>
                         <div class="col-4">
-                            <a href="#" name="procurar" class="btn btn-primary btn-block" value="Cadastrar" id="cpfSearch">Procurar</a>
+                            <a href="#" name="procurar" class="btn btn-primary btn-block" value="Cadastrar" id="cpfSearch">Consultar</a>
                         </div>
                     </div>
                 </div>
