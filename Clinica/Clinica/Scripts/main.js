@@ -1,75 +1,11 @@
-﻿let propriedadesPessoais = [
-    "name",
-    "dtNascimento",
-    "sexo",
-    "profissao",
-    "fixo",
-    "celular",
-    "cep",
-    "estado",
-    "cidade",
-    "logradouro",
-    "numEndereco",
-    "planoDeSaude",
-    "altura",
-    "peso",
-    "alergias",
-    "medicamento",
-    "abo",
-    "rh"
-]
-
-function capitalize(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
-function esvaziarFormulario() {
-    for (var i = 0; i < propriedadesPessoais.length; i++) {
-        var prop = propriedadesPessoais[i];
-        if ((prop === "rh") || (prop === "abo") || (prop === "sexo")) {
-            $("input:radio[name=" + prop + "]").prop("checked", false);
-        } else {
-            var input = $("input[name=" + prop + "]");
-            if (input !== undefined) {
-                input.val("");
-            }
-            var select = $("select[name=" + prop + "]");
-            if (select !== undefined) {
-                select.val("");
-            }
-        }
-    }
-}
-
-function preencherFormulario(dados) {
-    var limite = propriedadesPessoais.length;
-    for (var i = 0; i < limite; i++) {
-        var prop = propriedadesPessoais[i];
-        if (((prop === "rh") || (prop === "abo") || (prop === "sexo")) && (dados[capitalize(prop)] !== undefined)) {
-            $("input:radio[value=" + dados[capitalize(prop)] + "]").prop('checked', true);
-        } else {
-            var input = $("input[name=" + prop + "]");
-            if (input !== undefined) {
-                input.val(dados[capitalize(prop)]);
-            }
-            var select = $("select[name=" + prop + "]");
-            if (select !== undefined) {
-                select.val(dados[capitalize(prop)]);
-            }
-        }
-    }
-    $("#form-submit").html("Cadastrar");
-}
-
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('.cep').mask('00000-000', { reverse: true });
     $('.cpf').mask('000.000.000-00', { reverse: true });
     $('.fixo').mask('(00) 0000-0000', { reverse: false });
     $('.celular').mask('(00) 00000-0000', { reverse: false });
 
     $("#form-submit").click(function () {        
-        inputCpf = $("input[name=cpf]");
+        var inputCpf = $("input[name=cpf]");
         if (!validarCpf(inputCpf.val().replace(/\./g, "").replace("-", ""))) {
             alert("Digite o CPF corretamente");
             return;
@@ -79,16 +15,19 @@ $(document).ready(function () {
             return;
         }
         if (!validarAltura($("input[name=altura]").val())) { 
-            alert("Peso inválido");
+            alert("Altura inválida");
             return;
         }
         if (!validarPeso($("input[name=peso]").val())) {
             alert("Peso inválido");
             return;
         }
-
-        // TODO Do something with data
-        alert("Operação concluída!");
+        
+        var dados = coletarDadosDoFormulario();
+        enviarDadosNovos(dados, function () {
+            alert("Operação concluída!");
+            window.location.reload();
+        });
     });
 
     $("#cpfSearch").click(function () {
@@ -96,7 +35,6 @@ $(document).ready(function () {
         var cpf = inputCpf.val().replace(/\./g, "").replace("-", "");
         if (validarCpf(cpf)) {
             procurarPorCpf(cpf, function (dados) {
-                console.log(dados);
                 if (dados) {
                     preencherFormulario(dados);
                     aplicarMascaras();
@@ -104,11 +42,13 @@ $(document).ready(function () {
                 } else {
                     alert('CPF não encontrado!');
                     esvaziarFormulario();
+                    $("#form-submit").html("Cadastrar");
                 }
             });
         } else {
             alert('CPF inválido!')
             esvaziarFormulario();
+            $("#form-submit").html("Cadastrar");
         }
     });
 });
