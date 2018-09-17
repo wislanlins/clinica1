@@ -5,6 +5,7 @@
 function validarCpf(entrada) {
     var Soma;
     var Resto;
+    var i;
     Soma = 0;
     if (entrada == "00000000000") return false;
 

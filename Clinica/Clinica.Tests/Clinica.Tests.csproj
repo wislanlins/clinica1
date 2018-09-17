@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <Content Include="Views\Home\index.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

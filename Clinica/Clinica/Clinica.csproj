@@ -177,12 +177,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\formOps.js" />
     <Content Include="Scripts\mascaras.js" />
     <Content Include="Scripts\vendor\bootstrap.bundle.js" />
     <Content Include="Scripts\vendor\bootstrap.bundle.min.js" />
     <Content Include="Scripts\vendor\bootstrap.js" />
     <Content Include="Scripts\vendor\bootstrap.min.js" />
-    <Content Include="Scripts\buscarCPF.js" />
+    <Content Include="Scripts\cadastro.js" />
     <Content Include="Scripts\vendor\jquery.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\vendor\popper.min.js" />
