@@ -23,6 +23,24 @@ function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+function esvaziarFormulario() {
+    for (var i = 0; i < propriedadesPessoais.length; i++) {
+        var prop = propriedadesPessoais[i];
+        if ((prop === "rh") || (prop === "abo") || (prop === "sexo")) {
+            $("input:radio[name=" + prop + "]").prop("checked", false);
+        } else {
+            var input = $("input[name=" + prop + "]");
+            if (input !== undefined) {
+                input.val("");
+            }
+            var select = $("select[name=" + prop + "]");
+            if (select !== undefined) {
+                select.val("");
+            }
+        }
+    }
+}
+
 function preencherFormulario(dados) {
     var limite = propriedadesPessoais.length;
     for (var i = 0; i < limite; i++) {
@@ -40,8 +58,8 @@ function preencherFormulario(dados) {
             }
         }
     }
+    $("#form-submit").html("Cadastrar");
 }
-
 
 
 $(document).ready(function () {
@@ -69,7 +87,7 @@ $(document).ready(function () {
             return;
         }
 
-
+        // TODO Do something with data
         alert("Operação concluída!");
     });
 
@@ -85,12 +103,12 @@ $(document).ready(function () {
                     $("#form-submit").html("Atualizar");
                 } else {
                     alert('CPF não encontrado!');
-                    $("#form-submit").html("Cadastrar");
+                    esvaziarFormulario();
                 }
             });
         } else {
             alert('CPF inválido!')
-            $("#form-submit").html("Cadastrar");
+            esvaziarFormulario();
         }
     });
 });
