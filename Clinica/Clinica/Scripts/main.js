@@ -61,6 +61,31 @@ function preencherFormulario(dados) {
     $("#form-submit").html("Cadastrar");
 }
 
+function coletarDadosDoFormulario() {
+    var dados = {};
+
+    for (var i = 0; i < propriedadesPessoais.length; i++) {
+        var prop = propriedadesPessoais[i];
+        if ((prop === "rh") || (prop === "abo") || (prop === "sexo")) {
+            dados[capitalize(prop)] = $("input:radio[name=" + prop + "]").prop("checked");
+        } else {
+            var input = $("input[name=" + prop + "]");
+            if (input !== undefined) {
+                if (input.val() !== undefined) {
+                    dados[capitalize(prop)] = input.val();
+                }
+            }
+            var select = $("select[name=" + prop + "]");
+            if (select !== undefined) {
+                if (select.val() !== undefined) {
+                    dados[capitalize(prop)] = select.val();
+                }
+            }
+        }
+    }
+
+    return dados;
+}
 
 $(document).ready(function () {
     $('.cep').mask('00000-000', { reverse: true });
@@ -79,16 +104,20 @@ $(document).ready(function () {
             return;
         }
         if (!validarAltura($("input[name=altura]").val())) { 
-            alert("Peso inválido");
+            alert("Altura inválida");
             return;
         }
         if (!validarPeso($("input[name=peso]").val())) {
             alert("Peso inválido");
             return;
         }
-
-        // TODO Do something with data
+        
+        var dados = coletarDadosDoFormulario();
+        // BUG Delete this debugging message whenever possible
+        console.log(dados);
+        // TODO Send stuff to database
         alert("Operação concluída!");
+        window.location.reload();
     });
 
     $("#cpfSearch").click(function () {
@@ -96,7 +125,6 @@ $(document).ready(function () {
         var cpf = inputCpf.val().replace(/\./g, "").replace("-", "");
         if (validarCpf(cpf)) {
             procurarPorCpf(cpf, function (dados) {
-                console.log(dados);
                 if (dados) {
                     preencherFormulario(dados);
                     aplicarMascaras();
