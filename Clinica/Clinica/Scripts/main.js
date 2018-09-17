@@ -81,7 +81,7 @@ function mTel(tel) {
 }
 
 function aplicarMascaras() {
-    fMasc(document.getElementsByName("cpf")[0], mCpf);
+    fMasc(document.getElementsByName("cpf")[0], mCPF);
     fMasc(document.getElementsByName("fixo")[0], mTel);
     fMasc(document.getElementsByName("celular")[0], mTel);
     fMasc(document.getElementsByName("cep")[0], mCEP);
