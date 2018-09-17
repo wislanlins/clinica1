@@ -5,7 +5,7 @@
     $('.celular').mask('(00) 00000-0000', { reverse: false });
 
     $("#form-submit").click(function () {        
-        inputCpf = $("input[name=cpf]");
+        var inputCpf = $("input[name=cpf]");
         if (!validarCpf(inputCpf.val().replace(/\./g, "").replace("-", ""))) {
             alert("Digite o CPF corretamente");
             return;
@@ -24,9 +24,10 @@
         }
         
         var dados = coletarDadosDoFormulario();
-        // TODO Send stuff to database
-        alert("Operação concluída!");
-        window.location.reload();
+        enviarDadosNovos(dados, function () {
+            alert("Operação concluída!");
+            window.location.reload();
+        });
     });
 
     $("#cpfSearch").click(function () {
