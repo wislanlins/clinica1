@@ -85,7 +85,7 @@ function coletarDadosDoFormulario() {
     for (var i = 0; i < propriedadesPessoais.length; i++) {
         var prop = propriedadesPessoais[i];
         if ((prop === "rh") || (prop === "abo") || (prop === "sexo")) {
-            dados[capitalize(prop)] = $("input:radio[name=" + prop + "]").prop("checked");
+            dados[capitalize(prop)] = $("input[name=" + prop + "]:checked").val();
         } else {
             var input = $("input[name=" + prop + "]");
             if (input !== undefined) {
@@ -102,5 +102,6 @@ function coletarDadosDoFormulario() {
         }
     }
 
+    dados["Cpf"] = $("#cpf").val().replace(/\./g, "").replace("-", "");
     return dados;
 }
