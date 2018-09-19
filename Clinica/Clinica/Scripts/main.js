@@ -24,6 +24,7 @@
         }
         
         var dados = coletarDadosDoFormulario();
+        console.log(dados["Cpf"]);
         enviarDadosNovos(dados, function () {
             alert("Operação concluída!");
             window.location.reload();

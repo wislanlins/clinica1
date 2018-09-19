@@ -102,5 +102,6 @@ function coletarDadosDoFormulario() {
         }
     }
 
+    dados["Cpf"] = $("#cpf").val().replace(/\./g, "").replace("-", "");
     return dados;
 }
