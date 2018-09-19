@@ -6,7 +6,11 @@ function procurarPorCpf(cpf, callback) {
 }
 
 function enviarDadosNovos(dados, callback) {
-    $.post("/Patient/Cadastro/" + dados["Cpf"]).done(callback).fail(function () {
-        alert("Erro no servidor!");
+    $.ajax({
+        type: "POST",
+        url: "/Patient/Cadastro/" + dados["Cpf"],
+        data: dados,
+        success: callback,
+        dataType: "json"
     });
 }
