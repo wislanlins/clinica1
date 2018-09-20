@@ -9,7 +9,7 @@ namespace Clinica.Models
 {
     public class Patients
     {
-        public static Patient Get(string cpf)
+        public static Patient Read(string cpf)
         {
             Patient patient = null;
             string connectionString = GetConnection();
@@ -56,6 +56,90 @@ namespace Clinica.Models
                 }
             }
             return patient;
+        }
+
+        public static void Create(Patient patient)
+        {
+            SqlConnection conn = new SqlConnection(GetConnection());
+            string sql = "insert into paciente (cpf, name,dtNascimento,sexo,profissao,fixo,celular,cep,estado,cidade, "
+                + "logradouro,numEndereco,planoDeSaude,altura,peso,alergias,medicamento,abo,rh)"
+                + "values (@cpf, @name, @dtNascimento, @sexo, @profissao, @fixo, @celular, @cep, @estado, @cidade, "
+                + "@logradouro, @numEndereco, @planoDeSaude, @altura,@peso, @alergias, @medicamento, @abo,@rh)";
+            try
+            {
+                SqlCommand comando = new SqlCommand(sql, conn);
+                comando.Parameters.Add(new SqlParameter("@cpf", patient.Cpf));
+                comando.Parameters.Add(new SqlParameter("@name", patient.Name));
+                comando.Parameters.Add(new SqlParameter("@dtNascimento", patient.DtNascimento));
+                comando.Parameters.Add(new SqlParameter("@sexo", patient.Sexo));
+                comando.Parameters.Add(new SqlParameter("@profissao", patient.Profissao));
+                comando.Parameters.Add(new SqlParameter("@fixo", patient.Fixo));
+                comando.Parameters.Add(new SqlParameter("@celular", patient.Celular));
+                comando.Parameters.Add(new SqlParameter("@cep", patient.Cep));
+                comando.Parameters.Add(new SqlParameter("@estado", patient.Estado));
+                comando.Parameters.Add(new SqlParameter("@cidade", patient.Cidade));
+                comando.Parameters.Add(new SqlParameter("@logradouro", patient.Logradouro));
+                comando.Parameters.Add(new SqlParameter("@numEndereco", patient.NumEndereco));
+                comando.Parameters.Add(new SqlParameter("@planoDeSaude", patient.PlanoDeSaude));
+                comando.Parameters.Add(new SqlParameter("@altura", patient.Altura));
+                comando.Parameters.Add(new SqlParameter("@peso", patient.Peso));
+                comando.Parameters.Add(new SqlParameter("@alergias", patient.Alergias));
+                comando.Parameters.Add(new SqlParameter("@medicamento", patient.Medicamento));
+                comando.Parameters.Add(new SqlParameter("@abo", patient.Abo));
+                comando.Parameters.Add(new SqlParameter("@rh", patient.Rh));
+                conn.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static void Update(Patient patient)
+        {
+            SqlConnection conn = new SqlConnection(GetConnection());
+            string sql = "update paciente set (cpf = @cpf, name=@name,dtNascimento=@dtNascimento,sexo=@sexo,profissao=@profissao,"
+            + "fixo=@fixo,celular=@celular,cep=@cep,estado=@estado,cidade=@cidade,logradouro=@logradouro,numEndereco=@numEndereco,"
+            + "planoDeSaude=@planoDeSaude,altura=@altura,peso=@peso,alergias=@alergias,medicamento=@medicamento,abo=@abo,rh=@rh) where cpf= @cpf;";
+            try
+            {
+                SqlCommand comando = new SqlCommand(sql, conn);
+                comando.Parameters.Add(new SqlParameter("@cpf", patient.Cpf));
+                comando.Parameters.Add(new SqlParameter("@name", patient.Name));
+                comando.Parameters.Add(new SqlParameter("@dtNascimento", patient.DtNascimento));
+                comando.Parameters.Add(new SqlParameter("@sexo", patient.Sexo));
+                comando.Parameters.Add(new SqlParameter("@profissao", patient.Profissao));
+                comando.Parameters.Add(new SqlParameter("@fixo", patient.Fixo));
+                comando.Parameters.Add(new SqlParameter("@celular", patient.Celular));
+                comando.Parameters.Add(new SqlParameter("@cep", patient.Cep));
+                comando.Parameters.Add(new SqlParameter("@estado", patient.Estado));
+                comando.Parameters.Add(new SqlParameter("@cidade", patient.Cidade));
+                comando.Parameters.Add(new SqlParameter("@logradouro", patient.Logradouro));
+                comando.Parameters.Add(new SqlParameter("@numEndereco", patient.NumEndereco));
+                comando.Parameters.Add(new SqlParameter("@planoDeSaude", patient.PlanoDeSaude));
+                comando.Parameters.Add(new SqlParameter("@altura", patient.Altura));
+                comando.Parameters.Add(new SqlParameter("@peso", patient.Peso));
+                comando.Parameters.Add(new SqlParameter("@alergias", patient.Alergias));
+                comando.Parameters.Add(new SqlParameter("@medicamento", patient.Medicamento));
+                comando.Parameters.Add(new SqlParameter("@abo", patient.Abo));
+                comando.Parameters.Add(new SqlParameter("@rh", patient.Rh));
+                conn.Open();
+                comando.ExecuteNonQuery();
+                
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private static string GetConnection()

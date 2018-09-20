@@ -5,6 +5,7 @@
 function validarCpf(entrada) {
     var Soma;
     var Resto;
+    var i;
     Soma = 0;
     if (entrada == "00000000000") return false;
 
@@ -28,13 +29,11 @@ function validarCpf(entrada) {
  * Ou falso caso contrário.
  */
 function validarPeso(entrada) {
-    peso = parseInt(entrada);
+    var peso = parseInt(entrada);
     if (peso == NaN) {
         return false;
-    } else if (peso <= 0) {
-        return false;
     }
-    return true;
+    return peso >= 0;
 }
 
 /**
@@ -43,7 +42,7 @@ function validarPeso(entrada) {
  * Ou falso caso contrário.
  */
 function validarAltura(entrada) {
-    altura = parseInt(entrada);
+    var altura = parseInt(entrada);
     if (altura == NaN) {
         return false;
     }
