@@ -67,7 +67,7 @@ namespace Clinica.Controllers
                 bool completed = (isUpdate)? Patients.Update(maybe) : Patients.Create(maybe);
                 if (completed)
                 {
-                    return Json(new { status = "ok" });
+                    return Json(new { success = true });
                 }
             }
             return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);

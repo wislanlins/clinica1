@@ -93,7 +93,7 @@ namespace Clinica.Models
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.ToString());
                 result = false;
             }
             finally
@@ -109,43 +109,46 @@ namespace Clinica.Models
             bool ok = true;
             using (SqlConnection conn = new SqlConnection(GetConnection()))
             {
-                string sql = "update paciente set (cpf = @cpf, name=@name,dtNascimento=@dtNascimento,sexo=@sexo,profissao=@profissao,"
-                + "fixo=@fixo,celular=@celular,cep=@cep,estado=@estado,cidade=@cidade,logradouro=@logradouro,numEndereco=@numEndereco,"
-                + "planoDeSaude=@planoDeSaude,altura=@altura,peso=@peso,alergias=@alergias,medicamento=@medicamento,abo=@abo,rh=@rh) where cpf= @cpf;";
+                string sql = string.Format(
+                    "update paciente set cpf = '{0}', name='{1}',dtNascimento='{2}',sexo='{3}',profissao='{4}',"
+                    + "fixo='{5}',celular='{6}',cep='{7}',estado='{8}',cidade='{9}',logradouro='{10}',numEndereco='{11}',"
+                    + "planoDeSaude='{12}',altura={13},peso={14},alergias='{15}',medicamento='{16}',abo='{17}',rh='{18}' where cpf='{0}';",
+                    patient.Cpf,
+                    patient.Name,
+                    patient.DtNascimento,
+                    patient.Sexo,
+                    patient.Profissao,
+                    patient.Fixo,
+                    patient.Celular,
+                    patient.Cep,
+                    patient.Estado,
+                    patient.Cidade,
+                    patient.Logradouro,
+                    patient.NumEndereco,
+                    patient.PlanoDeSaude,
+                    patient.Altura,
+                    patient.Peso,
+                    patient.Alergias,
+                    patient.Medicamento,
+                    patient.Abo,
+                    (patient.Rh == "positivo")? "+" : "-"
+                );
                 conn.Open();
                 using (SqlCommand comando = new SqlCommand(sql, conn))
                 {
-                    comando.Parameters.AddWithValue("@cpf", patient.Cpf);
-                    comando.Parameters.AddWithValue("@name", patient.Name);
-                    comando.Parameters.AddWithValue("@dtNascimento", patient.DtNascimento);
-                    comando.Parameters.AddWithValue("@sexo", patient.Sexo);
-                    comando.Parameters.AddWithValue("@profissao", patient.Profissao);
-                    comando.Parameters.AddWithValue("@fixo", patient.Fixo);
-                    comando.Parameters.AddWithValue("@celular", patient.Celular);
-                    comando.Parameters.AddWithValue("@cep", patient.Cep);
-                    comando.Parameters.AddWithValue("@estado", patient.Estado);
-                    comando.Parameters.AddWithValue("@cidade", patient.Cidade);
-                    comando.Parameters.AddWithValue("@logradouro", patient.Logradouro);
-                    comando.Parameters.AddWithValue("@numEndereco", patient.NumEndereco);
-                    comando.Parameters.AddWithValue("@planoDeSaude", patient.PlanoDeSaude);
-                    comando.Parameters.AddWithValue("@altura", patient.Altura);
-                    comando.Parameters.AddWithValue("@peso", patient.Peso);
-                    comando.Parameters.AddWithValue("@alergias", patient.Alergias);
-                    comando.Parameters.AddWithValue("@medicamento", patient.Medicamento);
-                    comando.Parameters.AddWithValue("@abo", patient.Abo);
-                    comando.Parameters.AddWithValue("@rh", patient.Rh);
+                    Console.WriteLine(comando);
                     try
                     {
-                        comando.ExecuteNonQuery();
+                        ok = comando.ExecuteNonQuery() == 1;
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e);
+                        Console.WriteLine(e.ToString());
                         ok = false;
                     }
-                    
-                }
 
+                }
+                Console.WriteLine(sql);
                 return ok;
             }
         }
