@@ -24,8 +24,12 @@
         }
         
         var dados = coletarDadosDoFormulario();
-        enviarDadosNovos(dados, function () {
-            alert("Operação concluída!");
+        enviarDadosNovos(dados, function (dados) {
+            if (dados['status'] !== undefined) {
+                alert("Houve um erro na operação!");
+            } else {
+                alert("Operação concluída com êxito!");
+            }
             window.location.reload();
         });
     });

@@ -64,16 +64,11 @@ namespace Clinica.Controllers
                 maybe.Abo = Request.Form["Abo"];
                 maybe.Rh = Request.Form["Rh"];
 
-                if (isUpdate)
+                bool completed = (isUpdate)? Patients.Update(maybe) : Patients.Create(maybe);
+                if (completed)
                 {
-                    Patients.Update(maybe);
+                    return Json(new { success = true });
                 }
-                else
-                {
-                    Patients.Create(maybe);
-                }
-
-                return Json(new { status = "ok" });
             }
             return Json(new { status = "error" }, JsonRequestBehavior.AllowGet);
         }

@@ -21,7 +21,18 @@ namespace Clinica.Models
         public string Profissao;
         public string Fixo;
         public string Celular;
-        public string Cep;
+        public string _Cep;
+        public string Cep
+        {
+            get
+            {
+                return _Cep.Replace("-", "");
+            }
+            set
+            {
+                _Cep = value;
+            }
+        }
         public string Estado;
         public string Cidade;
         public string Logradouro;
