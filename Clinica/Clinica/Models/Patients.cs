@@ -60,48 +60,47 @@ namespace Clinica.Models
 
         public static bool Create(Patient patient)
         {
-            bool result = true;
-            SqlConnection conn = new SqlConnection(GetConnection());
-            string sql = "insert into paciente (cpf, name,dtNascimento,sexo,profissao,fixo,celular,cep,estado,cidade, "
-                + "logradouro,numEndereco,planoDeSaude,altura,peso,alergias,medicamento,abo,rh)"
-                + "values (@cpf, @name, @dtNascimento, @sexo, @profissao, @fixo, @celular, @cep, @estado, @cidade, "
-                + "@logradouro, @numEndereco, @planoDeSaude, @altura,@peso, @alergias, @medicamento, @abo,@rh);";
-            try
+            bool ok = true;
+            using (SqlConnection conn = new SqlConnection(GetConnection()))
             {
-                SqlCommand comando = new SqlCommand(sql, conn);
-                comando.Parameters.AddWithValue("@cpf", patient.Cpf);
-                comando.Parameters.AddWithValue("@name", patient.Name);
-                comando.Parameters.AddWithValue("@dtNascimento", patient.DtNascimento);
-                comando.Parameters.AddWithValue("@sexo", patient.Sexo);
-                comando.Parameters.AddWithValue("@profissao", patient.Profissao);
-                comando.Parameters.AddWithValue("@fixo", patient.Fixo);
-                comando.Parameters.AddWithValue("@celular", patient.Celular);
-                comando.Parameters.AddWithValue("@cep", patient.Cep);
-                comando.Parameters.AddWithValue("@estado", patient.Estado);
-                comando.Parameters.AddWithValue("@cidade", patient.Cidade);
-                comando.Parameters.AddWithValue("@logradouro", patient.Logradouro);
-                comando.Parameters.AddWithValue("@numEndereco", patient.NumEndereco);
-                comando.Parameters.AddWithValue("@planoDeSaude", patient.PlanoDeSaude);
-                comando.Parameters.AddWithValue("@altura", patient.Altura);
-                comando.Parameters.AddWithValue("@peso", patient.Peso);
-                comando.Parameters.AddWithValue("@alergias", patient.Alergias);
-                comando.Parameters.AddWithValue("@medicamento", patient.Medicamento);
-                comando.Parameters.AddWithValue("@abo", patient.Abo);
-                comando.Parameters.AddWithValue("@rh", patient.Rh);
+                string sql = string.Format(
+                    "insert into paciente  (cpf, name,dtNascimento,sexo,profissao,fixo,celular,cep,estado,cidade,logradouro,numEndereco,planoDeSaude,altura,peso,alergias,medicamento,abo,rh) values ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}',{13},{14},'{15}','{16}','{17}','{18}');",
+                    patient.Cpf,
+                    patient.Name,
+                    patient.DtNascimento.Split('/').Reverse().Aggregate("", (box, it) => box + it + "-").TrimEnd('-'),
+                    patient.Sexo,
+                    patient.Profissao,
+                    patient.Fixo,
+                    patient.Celular,
+                    patient.Cep,
+                    patient.Estado,
+                    patient.Cidade,
+                    patient.Logradouro,
+                    patient.NumEndereco,
+                    patient.PlanoDeSaude,
+                    patient.Altura,
+                    patient.Peso,
+                    patient.Alergias,
+                    patient.Medicamento,
+                    patient.Abo,
+                    (patient.Rh == "positivo") ? "+" : "-"
+                );
                 conn.Open();
-                result = comando.ExecuteNonQuery() == 1;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-                result = false;
-            }
-            finally
-            {
-                conn.Close();
-            }
+                using (SqlCommand comando = new SqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        comando.ExecuteNonQuery();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        ok = false;
+                    }
 
-            return result;
+                }
+                return ok;
+            }
         }
 
         public static bool Update(Patient patient)
@@ -143,12 +142,10 @@ namespace Clinica.Models
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.ToString());
                         ok = false;
                     }
 
                 }
-                Console.WriteLine(sql);
                 return ok;
             }
         }
