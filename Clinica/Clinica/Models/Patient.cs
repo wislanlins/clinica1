@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Web;
+
 namespace Clinica.Models
 {
     public class Patient
@@ -65,6 +67,34 @@ namespace Clinica.Models
             {
                 _Rh = value;
             }
+        }
+
+        public Patient()
+        {
+
+        }
+
+        public Patient(HttpRequestBase request)
+        {
+            Cpf = request.Form["Cpf"];
+            Name = request.Form["Name"];
+            DtNascimento = request.Form["DtNascimento"];
+            Sexo = request.Form["Sexo"];
+            Profissao = request.Form["Profissao"];
+            Fixo = request.Form["Fixo"];
+            Celular = request.Form["Celular"];
+            Cep = request.Form["Cep"];
+            Estado = request.Form["Estado"];
+            Cidade = request.Form["Cidade"];
+            Logradouro = request.Form["Logradouro"];
+            NumEndereco = request.Form["NumEndereco"];
+            PlanoDeSaude = request.Form["PlanoDeSaude"];
+            Altura = int.Parse(request.Form["Altura"]);
+            Peso = int.Parse(request.Form["Peso"]);
+            Alergias = request.Form["Alergias"];
+            Medicamento = request.Form["Medicamentos"];
+            Abo = request.Form["Abo"];
+            Rh = request.Form["Rh"];
         }
 
         public override string ToString()

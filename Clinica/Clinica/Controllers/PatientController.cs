@@ -40,29 +40,9 @@ namespace Clinica.Controllers
                 maybe = Patients.Read(cpf);
                 if (maybe == null)
                 {
-                    maybe = new Patient();
                     isUpdate = false;
                 }
-
-                maybe.Cpf = Request.Form["Cpf"];
-                maybe.Name = Request.Form["Name"];
-                maybe.DtNascimento = Request.Form["DtNascimento"];
-                maybe.Sexo = Request.Form["Sexo"];
-                maybe.Profissao = Request.Form["Profissao"];
-                maybe.Fixo = Request.Form["Fixo"];
-                maybe.Celular = Request.Form["Celular"];
-                maybe.Cep = Request.Form["Cep"];
-                maybe.Estado = Request.Form["Estado"];
-                maybe.Cidade = Request.Form["Cidade"];
-                maybe.Logradouro = Request.Form["Logradouro"];
-                maybe.NumEndereco = Request.Form["NumEndereco"];
-                maybe.PlanoDeSaude = Request.Form["PlanoDeSaude"];
-                maybe.Altura = int.Parse(Request.Form["Altura"]);
-                maybe.Peso = int.Parse(Request.Form["Peso"]);
-                maybe.Alergias = Request.Form["Alergias"];
-                maybe.Medicamento = Request.Form["Medicamentos"];
-                maybe.Abo = Request.Form["Abo"];
-                maybe.Rh = Request.Form["Rh"];
+                maybe = new Patient(Request);
 
                 bool completed = (isUpdate)? Patients.Update(maybe) : Patients.Create(maybe);
                 if (completed)
