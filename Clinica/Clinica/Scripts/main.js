@@ -39,7 +39,7 @@
         var cpf = inputCpf.val().replace(/\./g, "").replace("-", "");
         if (validarCpf(cpf)) {
             procurarPorCpf(cpf, function (dados) {
-                if (dados) {
+                if (dados['status'] === undefined) {
                     preencherFormulario(dados);
                     aplicarMascaras();
                     $("#form-submit").html("Atualizar");
