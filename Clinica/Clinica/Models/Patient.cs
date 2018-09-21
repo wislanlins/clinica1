@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Linq;
 
 namespace Clinica.Models
 {
@@ -12,7 +13,14 @@ namespace Clinica.Models
         {
             get
             {
-                return _DtNascimento.Split(' ')[0];
+                if (_DtNascimento.Contains("/"))
+                {
+                    return _DtNascimento.Split(' ')[0].Split('/').Reverse().Aggregate("", (box, it) => box + it + "-").TrimEnd('-');
+                }
+                else
+                {
+                    return _DtNascimento;
+                }
             }
             set
             {
@@ -21,8 +29,30 @@ namespace Clinica.Models
         }
         public string Sexo;
         public string Profissao;
-        public string Fixo;
-        public string Celular;
+        private string _Fixo;
+        public string Fixo
+        {
+            get
+            {
+                return _Fixo.Replace(" ", "").Replace("(", "").Replace(")", "").Replace("-", "");
+            }
+            set
+            {
+                _Fixo = value;
+            }
+        }
+        private string _Celular;
+        public string Celular
+        {
+            get
+            {
+                return _Celular.Replace(" ", "").Replace("(", "").Replace(")", "").Replace("-", "");
+            }
+            set
+            {
+                _Celular = value;
+            }
+        }
         public string _Cep;
         public string Cep
         {

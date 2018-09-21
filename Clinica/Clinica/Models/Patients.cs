@@ -67,7 +67,7 @@ namespace Clinica.Models
                     "insert into paciente  (cpf, name,dtNascimento,sexo,profissao,fixo,celular,cep,estado,cidade,logradouro,numEndereco,planoDeSaude,altura,peso,alergias,medicamento,abo,rh) values ('{0}', '{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}',{13},{14},'{15}','{16}','{17}','{18}');",
                     patient.Cpf,
                     patient.Name,
-                    patient.DtNascimento.Split('/').Reverse().Aggregate("", (box, it) => box + it + "-").TrimEnd('-'),
+                    patient.DtNascimento,
                     patient.Sexo,
                     patient.Profissao,
                     patient.Fixo,
