@@ -54,6 +54,13 @@ function esvaziarFormulario() {
  *               capitalizadas e valores são os dados do paciente.
  */
 function preencherFormulario(dados) {
+    // ajuste
+    dados["DtNascimento"] = dados["DtNascimento"].split('-').reverse().join('/');
+    dados["Fixo"] = mTel(dados["Fixo"]);
+    dados["Celular"] = mTel(dados["Celular"]);
+    dados["Cep"] = mCEP(dados["Cep"]);
+
+    // preenchimento
     var limite = propriedadesPessoais.length;
     for (var i = 0; i < limite; i++) {
         var prop = propriedadesPessoais[i];
