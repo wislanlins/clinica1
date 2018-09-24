@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Web;
+using System.Linq;
+
 namespace Clinica.Models
 {
     public class Patient
@@ -10,7 +13,14 @@ namespace Clinica.Models
         {
             get
             {
-                return _DtNascimento.Split(' ')[0];
+                if (_DtNascimento.Contains("/"))
+                {
+                    return _DtNascimento.Split(' ')[0].Split('/').Reverse().Aggregate("", (box, it) => box + it + "-").TrimEnd('-');
+                }
+                else
+                {
+                    return _DtNascimento;
+                }
             }
             set
             {
@@ -19,8 +29,30 @@ namespace Clinica.Models
         }
         public string Sexo;
         public string Profissao;
-        public string Fixo;
-        public string Celular;
+        private string _Fixo;
+        public string Fixo
+        {
+            get
+            {
+                return _Fixo.Replace(" ", "").Replace("(", "").Replace(")", "").Replace("-", "");
+            }
+            set
+            {
+                _Fixo = value;
+            }
+        }
+        private string _Celular;
+        public string Celular
+        {
+            get
+            {
+                return _Celular.Replace(" ", "").Replace("(", "").Replace(")", "").Replace("-", "");
+            }
+            set
+            {
+                _Celular = value;
+            }
+        }
         public string _Cep;
         public string Cep
         {
@@ -65,6 +97,34 @@ namespace Clinica.Models
             {
                 _Rh = value;
             }
+        }
+
+        public Patient()
+        {
+
+        }
+
+        public Patient(HttpRequestBase request)
+        {
+            Cpf = request.Form["Cpf"];
+            Name = request.Form["Name"];
+            DtNascimento = request.Form["DtNascimento"];
+            Sexo = request.Form["Sexo"];
+            Profissao = request.Form["Profissao"];
+            Fixo = request.Form["Fixo"];
+            Celular = request.Form["Celular"];
+            Cep = request.Form["Cep"];
+            Estado = request.Form["Estado"];
+            Cidade = request.Form["Cidade"];
+            Logradouro = request.Form["Logradouro"];
+            NumEndereco = request.Form["NumEndereco"];
+            PlanoDeSaude = request.Form["PlanoDeSaude"];
+            Altura = int.Parse(request.Form["Altura"]);
+            Peso = int.Parse(request.Form["Peso"]);
+            Alergias = request.Form["Alergias"];
+            Medicamento = request.Form["Medicamentos"];
+            Abo = request.Form["Abo"];
+            Rh = request.Form["Rh"];
         }
 
         public override string ToString()
